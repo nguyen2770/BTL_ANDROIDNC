@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">BTL_Android</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Trang chủ</string>
+    <string name="menu_history">Lịch Sử</string>
+    <string name="menu_gift">Đổi quà</string>
+    <string name="menu_contact">Liên hệ</string>
+    <string name="menu_notification">Thông báo</string>
+    <string name="menu_feedback">Phản Hồi</string>
+    <string name="menu_setting">Thiết Lập</string>
+    <string name="logout">Đăng Xuất</string>
+    <string name="schedulePickup">Đặt Lịch</string>
+    <string name="account"> Tôi </string>
+
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
