@@ -68,3 +68,5 @@ local.properties
 *.log
 *.tmp
 >>>>>>> master
+config.bat
+node_modules
