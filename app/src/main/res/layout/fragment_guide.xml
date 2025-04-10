@@ -1,0 +1,89 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollGuide"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:paddingBottom="120dp">  <!-- Thêm paddingBottom để cách Bottom Bar -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Tiêu đề chung -->
+        <TextView
+            android:id="@+id/tvGuideTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rubbish_guide"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Phần Rác Vô Cơ -->
+        <TextView
+            android:id="@+id/tvInorganicTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rac_voco"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/imgInorganic"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/racvoco" />
+        <TextView
+            android:id="@+id/tvInorganicDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Rac_vo_co_text"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Phần Rác Hữu Cơ -->
+        <TextView
+            android:id="@+id/tvOrganicTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rac_huuco"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/imgOrganic"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/rachuuco" />
+        <TextView
+            android:id="@+id/tvOrganicDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Rac_huu_co_text"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Phần Rác Tái Chế -->
+        <TextView
+            android:id="@+id/tvRecycleTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rac_taiche"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/imgRecycle"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ractaiche" />
+        <TextView
+            android:id="@+id/tvRecycleDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Rac_tai_che_text"
+            android:layout_marginBottom="16dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
+    </LinearLayout>
+</ScrollView>
