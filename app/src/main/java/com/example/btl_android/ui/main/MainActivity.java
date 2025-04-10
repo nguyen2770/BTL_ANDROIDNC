@@ -1,12 +1,17 @@
 package com.example.btl_android.ui.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.btl_android.R;
+import com.example.btl_android.viewmodel.UserViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -15,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.btl_android.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,7 +50,32 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
+        setupHeader();
+
     }
+
+    private void setupHeader() {
+        UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        userViewModel.fetchCurrentUser();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+
+        TextView txtName = headerView.findViewById(R.id.nav_header_name);
+        TextView txtEmail = headerView.findViewById(R.id.nav_header_email);
+
+        userViewModel.getUserLiveData().observe(this, user -> {
+            if (user != null) {
+                txtName.setText(user.getName());
+                Log.i( "setupHeader: ", user.getName());
+                Log.i( "setupHeader: ", user.getAddress());
+                Log.i( "setupHeader: ", user.getRole());
+
+                txtEmail.setText(user.getEmail());
+            }
+        });
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

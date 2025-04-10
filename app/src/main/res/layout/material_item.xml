@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@drawable/bg_material_item"
+    android:gravity="center"
+    android:layout_margin="8dp">
+
+    <ImageView
+        android:id="@+id/imgMaterial"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/txtMaterialName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chai nhựa PET"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:textColor="#333333" />
+
+    <TextView
+        android:id="@+id/txtMaterialPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4000đ"
+        android:textSize="13sp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:textColor="@android:color/holo_green_dark"/>
+</LinearLayout>
