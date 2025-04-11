@@ -8,6 +8,8 @@ public class Material {
     private String category;      // Nhóm vật liệu (VD: Nhựa mềm, Kim loại nặng...)
     private double pricePerKg;    // Giá trị ước tính trên mỗi kg (dùng để tính điểm)
     private String imageUrl;      // link ảnh của vaatj liệu
+    private double weight;        // Khối lượng vật liệu (kg)
+    private String type;          // Loại vật liệu
 
     public Material(int materialID, String name, String description, String category, double pricePerKg, String imageUrl) {
         this.materialID = materialID;
@@ -16,9 +18,13 @@ public class Material {
         this.category = category;
         this.pricePerKg = pricePerKg;
         this.imageUrl =  imageUrl;
+        this.weight = 0;
+        this.type = category;
     }
 
-    public Material() {}
+    public Material() {
+        this.weight = 0;
+    }
 
     public int getMaterialID() {
         return materialID;
@@ -66,5 +72,21 @@ public class Material {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

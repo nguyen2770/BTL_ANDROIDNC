@@ -21,6 +21,7 @@ import com.example.btl_android.R;
 import com.example.btl_android.databinding.FragmentHomeBinding;
 import com.example.btl_android.ui.common.MaterialAdapter;
 import com.example.btl_android.ui.common.SlideAdapter;
+import com.example.btl_android.ui.waste_owner.statistics.StatisticsViewModel;
 import com.example.btl_android.viewmodel.MaterialViewModel;
 import com.google.gson.Gson;
 
@@ -38,6 +39,7 @@ public class HomeFragment extends Fragment {
     private MaterialViewModel viewModel;
     private MaterialAdapter adapter;
     private LinearLayout toGift;
+    private StatisticsViewModel statisticsViewModel;
 
 
     private final Runnable sliderRunnable = new Runnable() {
@@ -92,6 +94,9 @@ public class HomeFragment extends Fragment {
 
             NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
             navController.navigate(R.id.action_nav_home_to_detail_material, bundle);
+
+            // Cập nhật thống kê
+            statisticsViewModel.updateStatistics(material.getWeight(), material.getType());
         });
 
         recyclerView.setAdapter(adapter);
@@ -100,15 +105,13 @@ public class HomeFragment extends Fragment {
         toGift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavController navController = NavHostFragment.findNavController(HomeFragment.this);
+                NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
                 navController.navigate(R.id.action_homeFragment_to_giftFragment);
-
             }
         });
 
-        // Gọi ViewModel để load dữ liệu
-        viewModel = new ViewModelProvider(this).get(MaterialViewModel.class);
-        viewModel.getMaterials().observe(getViewLifecycleOwner(), adapter::setMaterialList);
+        // Khởi tạo StatisticsViewModel
+        statisticsViewModel = new ViewModelProvider(requireActivity()).get(StatisticsViewModel.class);
 
         return root;
     }

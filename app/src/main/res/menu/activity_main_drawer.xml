@@ -13,6 +13,10 @@
             android:icon="@drawable/baseline_history_edu_24"
             android:title="@string/menu_history" />
         <item
+            android:id="@+id/nav_statistics"
+            android:icon="@drawable/baseline_bar_chart_24"
+            android:title="@string/menu_statistics" />
+        <item
             android:id="@+id/nav_gift"
             android:icon="@drawable/baseline_card_giftcard_24"
             android:title="@string/menu_gift" />

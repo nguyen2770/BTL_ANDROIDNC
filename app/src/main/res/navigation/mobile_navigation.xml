@@ -33,9 +33,9 @@
         tools:layout="@layout/fragment_gift" />
     <fragment
         android:id="@+id/nav_notification"
-        android:name="com.example.btl_android.ui.waste_owner.Test.TestFragment"
+        android:name="com.example.btl_android.ui.waste_owner.notification.NotificationFragment"
         android:label="@string/menu_notification"
-        tools:layout="@layout/fragment_test" />
+        tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/nav_contact"
         android:name="com.example.btl_android.ui.waste_owner.Test.TestFragment"
@@ -46,6 +46,11 @@
         android:name="com.example.btl_android.ui.waste_owner.Test.TestFragment"
         android:label="@string/menu_contact"
         tools:layout="@layout/fragment_test" />
+    <fragment
+        android:id="@+id/nav_statistics"
+        android:name="com.example.btl_android.ui.waste_owner.statistics.StatisticsFragment"
+        android:label="@string/menu_statistics"
+        tools:layout="@layout/fragment_statistics" />
     <fragment
         android:id="@+id/detail_material"
         android:name="com.example.btl_android.ui.waste_owner.MaterialDetailFragment"

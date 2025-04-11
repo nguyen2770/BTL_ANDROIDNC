@@ -24,82 +24,163 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
+        android:paddingBottom="72dp"
+        android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="2dp">
+            android:orientation="vertical"
+            android:paddingBottom="56dp">
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Tổng số lượng rác:"
-                        android:textColor="@android:color/darker_gray"/>
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp">
 
-                    <TextView
-                        android:id="@+id/text_total_weight"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tổng số lượng rác:"
+                            android:textColor="@android:color/darker_gray"/>
+
+                        <TextView
+                            android:id="@+id/text_total_weight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:textColor="@android:color/black"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:textColor="@android:color/black"/>
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Số lần thu gom:"
+                            android:textColor="@android:color/darker_gray"/>
+
+                        <TextView
+                            android:id="@+id/text_total_collections"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:textColor="@android:color/black"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hiệu suất:"
+                            android:textColor="@android:color/darker_gray"/>
+
+                        <TextView
+                            android:id="@+id/text_efficiency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:textColor="@android:color/black"/>
+                    </LinearLayout>
+
                 </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Nút tạo dữ liệu mẫu -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_seed_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Tạo dữ liệu mẫu"
+                app:icon="@drawable/baseline_add_24" />
+
+            <!-- Biểu đồ thống kê theo thời gian -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Số lần thu gom:"
-                        android:textColor="@android:color/darker_gray"/>
+                        android:text="Thống kê theo thời gian"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
 
-                    <TextView
-                        android:id="@+id/text_total_collections"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:textColor="@android:color/black"/>
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/chart_time_series"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"/>
+
                 </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Biểu đồ phân bố loại rác -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hiệu suất:"
-                        android:textColor="@android:color/darker_gray"/>
+                        android:text="Phân bố loại rác"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
 
-                    <TextView
-                        android:id="@+id/text_efficiency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:textColor="@android:color/black"/>
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/chart_waste_distribution"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"/>
+
                 </LinearLayout>
 
-            </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-        </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 

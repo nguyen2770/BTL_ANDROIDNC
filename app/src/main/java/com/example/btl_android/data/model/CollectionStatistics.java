@@ -1,14 +1,21 @@
 package com.example.btl_android.data.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CollectionStatistics {
     private String collectorId;
     private double totalWeight; // Tổng khối lượng rác đã thu gom (kg)
     private int totalCollections; // Tổng số lần thu gom
     private double efficiency; // Hiệu suất (%)
     private long timestamp;
+    private Map<String, Double> wasteTypeDistribution; // Phân bố loại rác
+    private Map<Long, Double> timeSeriesData; // Dữ liệu theo thời gian
 
     public CollectionStatistics() {
         // Required empty constructor for Firebase
+        wasteTypeDistribution = new HashMap<>();
+        timeSeriesData = new HashMap<>();
     }
 
     public CollectionStatistics(String collectorId) {
@@ -17,6 +24,8 @@ public class CollectionStatistics {
         this.totalCollections = 0;
         this.efficiency = 0;
         this.timestamp = System.currentTimeMillis();
+        this.wasteTypeDistribution = new HashMap<>();
+        this.timeSeriesData = new HashMap<>();
     }
 
     // Getters and Setters
@@ -39,6 +48,26 @@ public class CollectionStatistics {
     
     public long getTimestamp() { return timestamp; }
     public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
+
+    public Map<String, Double> getWasteTypeDistribution() { return wasteTypeDistribution; }
+    public void setWasteTypeDistribution(Map<String, Double> wasteTypeDistribution) {
+        this.wasteTypeDistribution = wasteTypeDistribution;
+    }
+
+    public Map<Long, Double> getTimeSeriesData() { return timeSeriesData; }
+    public void setTimeSeriesData(Map<Long, Double> timeSeriesData) {
+        this.timeSeriesData = timeSeriesData;
+    }
+
+    // Thêm dữ liệu cho một loại rác
+    public void addWasteType(String type, double weight) {
+        wasteTypeDistribution.merge(type, weight, Double::sum);
+    }
+
+    // Thêm dữ liệu theo thời gian
+    public void addTimeSeriesData(long timestamp, double weight) {
+        timeSeriesData.put(timestamp, weight);
+    }
 
     // Tính hiệu suất dựa trên tổng khối lượng và số lần thu gom
     private void calculateEfficiency() {

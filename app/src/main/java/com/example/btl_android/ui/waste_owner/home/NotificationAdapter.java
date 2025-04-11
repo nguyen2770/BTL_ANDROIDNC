@@ -23,6 +23,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public interface OnNotificationClickListener {
         void onNotificationClick(Notification notification);
+        
+        // Add long click functionality
+        default void onNotificationLongClick(Notification notification) {
+            // Optional implementation
+        }
     }
 
     public void setOnNotificationClickListener(OnNotificationClickListener listener) {
@@ -57,18 +62,30 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         private TextView titleText;
         private TextView messageText;
         private TextView timeText;
+        private View unreadIndicator;
 
         public NotificationViewHolder(@NonNull View itemView) {
             super(itemView);
             titleText = itemView.findViewById(R.id.text_notification_title);
             messageText = itemView.findViewById(R.id.text_notification_message);
             timeText = itemView.findViewById(R.id.text_notification_time);
+            unreadIndicator = itemView.findViewById(R.id.unread_indicator);
 
             itemView.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION && listener != null) {
                     listener.onNotificationClick(notifications.get(position));
                 }
+            });
+            
+            // Add long click listener
+            itemView.setOnLongClickListener(v -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION && listener != null) {
+                    listener.onNotificationLongClick(notifications.get(position));
+                    return true;
+                }
+                return false;
             });
         }
 
@@ -80,8 +97,21 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             String time = sdf.format(new Date(notification.getTimestamp()));
             timeText.setText(time);
 
-            // Set background color based on read status
-            itemView.setAlpha(notification.isRead() ? 0.7f : 1.0f);
+            // Set read status visual indication
+            if (notification.isRead()) {
+                // Use context.getResources().getIdentifier for styles
+                titleText.setAlpha(0.7f);
+                if (unreadIndicator != null) {
+                    unreadIndicator.setVisibility(View.GONE);
+                }
+                itemView.setBackgroundResource(R.drawable.bg_notification_read);
+            } else {
+                titleText.setAlpha(1.0f);
+                if (unreadIndicator != null) {
+                    unreadIndicator.setVisibility(View.VISIBLE);
+                }
+                itemView.setBackgroundResource(R.drawable.bg_notification_unread);
+            }
         }
     }
 } 
