@@ -1,64 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Layout cuộn được toàn bộ nội dung -->
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:clipToPadding="false"
     tools:context=".ui.waste_owner.home.HomeFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_notifications"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottom_space">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="100dp"> <!-- Chừa khoảng trống cho BottomNavigationView -->
 
-        <LinearLayout
+        <!-- ViewPager2 -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="200dp"
+            android:layout_marginTop="56dp" />
 
-            <TextView
-                android:id="@+id/text_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Thông báo nhắc nhở"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"/>
+        <!-- Icon hàng ngang -->
+        <LinearLayout
+            android:id="@+id/shortcutIcons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_notifications"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <!-- Icon 1 -->
+            <LinearLayout
+                android:id="@+id/toGift"
+                android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_marginTop="8dp"
-                android:clipToPadding="false"
-                android:paddingBottom="80dp"/>
+                android:orientation="vertical"
+                android:gravity="left"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/logo" />
+                <TextView
+                    android:text="Đổi quà"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
 
+            <!-- Thêm icon khác tương tự ở đây nếu cần -->
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+        <!-- Tiêu đề -->
+        <TextView
+            android:id="@+id/tvDSMaterials"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bảng giá phế liệu"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"/>
 
-    <!-- Space for bottom navigation -->
-    <Space
-        android:id="@+id/bottom_space"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_notification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:contentDescription="Thêm nhắc nhở"
-        android:src="@android:drawable/ic_input_add"
-        app:layout_constraintBottom_toTopOf="@id/bottom_space"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerMaterials"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
