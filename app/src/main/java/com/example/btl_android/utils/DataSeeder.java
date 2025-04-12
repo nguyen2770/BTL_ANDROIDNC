@@ -2,12 +2,14 @@ package com.example.btl_android.utils;
 
 import android.util.Log;
 
+import com.example.btl_android.data.model.Material;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -100,6 +102,140 @@ public class DataSeeder {
                 })
                 .addOnFailureListener(e -> {
                     Log.e(TAG, "Lỗi khi tạo dữ liệu mẫu: " + e.getMessage());
+                    if (listener != null) {
+                        listener.onComplete(false);
+                    }
+                });
+    }
+    
+    /**
+     * Tạo dữ liệu mẫu cho vật liệu tái chế
+     * @param listener Callback khi hoàn tất
+     */
+    public static void seedMaterialData(OnSeederCompleteListener listener) {
+        // Kiểm tra xem đã có dữ liệu vật liệu chưa
+        db.collection("materials").get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    if (!queryDocumentSnapshots.isEmpty()) {
+                        Log.d(TAG, "Đã có dữ liệu vật liệu, không cần tạo lại");
+                        if (listener != null) {
+                            listener.onComplete(true);
+                        }
+                        return;
+                    }
+                    
+                    // Tạo danh sách các vật liệu mẫu
+                    List<Material> materials = new ArrayList<>();
+                    
+                    // Nhựa
+                    materials.add(new Material(
+                            1,
+                            "Chai nhựa PET",
+                            "Chai nhựa trong suốt dùng đựng nước, nước ngọt, dầu ăn...",
+                            "Nhựa",
+                            4000,
+                            "https://cdn.dariu.vn/wp-content/uploads/2023/10/ve-sinh-chai-nhua-1.jpg"
+                    ));
+                    
+                    materials.add(new Material(
+                            2,
+                            "Nhựa HDPE",
+                            "Nhựa đục, cứng, thường dùng làm chai sữa, chai dầu gội, nước rửa chén...",
+                            "Nhựa",
+                            5000,
+                            "https://cdn.tgdd.vn/Files/2022/06/10/1438609/phan-biet-cac-loai-nhua-co-the-tai-che-va-khong-the-tai-che-202206101429111103.jpg"
+                    ));
+                    
+                    // Giấy
+                    materials.add(new Material(
+                            3,
+                            "Giấy báo, tạp chí",
+                            "Giấy báo, tạp chí cũ, sách vở không dùng...",
+                            "Giấy",
+                            3000,
+                            "https://cdn.tgdd.vn/Files/2021/06/01/1356264/10-meo-tai-che-giay-bao-cu-thanh-do-dung-huu-ich-202106011526309633.jpg"
+                    ));
+                    
+                    materials.add(new Material(
+                            4,
+                            "Thùng carton",
+                            "Thùng carton đựng hàng hóa, sản phẩm...",
+                            "Giấy",
+                            2500,
+                            "https://phongthuyhongphuc.vn/pic/News/images/tin-tuc-1/mo-thay-thung-carton-1.jpg"
+                    ));
+                    
+                    // Kim loại
+                    materials.add(new Material(
+                            5,
+                            "Lon nhôm",
+                            "Lon bia, nước ngọt, đồ uống có ga...",
+                            "Kim loại",
+                            20000,
+                            "https://cdn.tgdd.vn/Files/2022/04/01/1423683/ve-sinh-va-bao-quan-lon-bia-sao-cho-dung-202204011531422141.jpg"
+                    ));
+                    
+                    materials.add(new Material(
+                            6,
+                            "Sắt vụn",
+                            "Các loại sắt vụn, thép không gỉ, kim loại tái chế...",
+                            "Kim loại",
+                            7000,
+                            "https://thephuc.com/wp-content/uploads/2020/06/sat-thep-phe-lieu.jpg"
+                    ));
+                    
+                    // Thủy tinh
+                    materials.add(new Material(
+                            7,
+                            "Chai thủy tinh",
+                            "Chai rượu, nước ngọt, lọ thủy tinh đựng gia vị...",
+                            "Thủy tinh",
+                            2000,
+                            "https://cdn.tgdd.vn/Files/2021/07/30/1372078/huong-dan-tai-che-chai-thuy-tinh-thong-dung-ma-ban-nhat-dinh-phai-biet-202107302344534050.jpg"
+                    ));
+                    
+                    // Rác điện tử
+                    materials.add(new Material(
+                            8,
+                            "Pin, ắc quy",
+                            "Pin các loại đã qua sử dụng...",
+                            "Rác điện tử",
+                            15000,
+                            "https://i-vnexpress.vnecdn.net/2021/09/22/pin-dien-thoai-8587-1632296824.jpg"
+                    ));
+                    
+                    materials.add(new Material(
+                            9,
+                            "Linh kiện điện tử",
+                            "Bo mạch, dây điện, linh kiện từ thiết bị điện tử...",
+                            "Rác điện tử",
+                            30000,
+                            "https://image.thanhnien.vn/w2048/Uploaded/2022/puqgfdmzs-co/2021_11_10/rac-thai-dien-tu-3194.jpeg"
+                    ));
+                    
+                    // Thêm các vật liệu vào Firestore
+                    List<Task<Void>> tasks = new ArrayList<>();
+                    for (Material material : materials) {
+                        tasks.add(db.collection("materials").document().set(material));
+                    }
+                    
+                    // Đợi tất cả các tác vụ hoàn thành
+                    Tasks.whenAllComplete(tasks)
+                            .addOnSuccessListener(taskSnapshots -> {
+                                Log.d(TAG, "Đã tạo thành công " + materials.size() + " vật liệu mẫu");
+                                if (listener != null) {
+                                    listener.onComplete(true);
+                                }
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.e(TAG, "Lỗi khi tạo dữ liệu vật liệu mẫu: " + e.getMessage());
+                                if (listener != null) {
+                                    listener.onComplete(false);
+                                }
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Lỗi khi kiểm tra collection materials: " + e.getMessage());
                     if (listener != null) {
                         listener.onComplete(false);
                     }

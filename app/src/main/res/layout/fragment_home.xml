@@ -10,67 +10,119 @@
     android:clipToPadding="false"
     tools:context=".ui.waste_owner.home.HomeFragment">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="100dp"> <!-- Chừa khoảng trống cho BottomNavigationView -->
+        android:layout_height="wrap_content">
 
-        <!-- ViewPager2 -->
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="56dp" />
-
-        <!-- Icon hàng ngang -->
         <LinearLayout
-            android:id="@+id/shortcutIcons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="8dp">
+            android:orientation="vertical"
+            android:paddingBottom="100dp"> <!-- Chừa khoảng trống cho BottomNavigationView -->
 
-            <!-- Icon 1 -->
+            <!-- ViewPager2 -->
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="56dp" />
+
+            <!-- Icon hàng ngang -->
             <LinearLayout
-                android:id="@+id/toGift"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="left"
-                android:layout_margin="10dp"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/logo" />
-                <TextView
-                    android:text="Đổi quà"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                android:id="@+id/shortcutIcons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp">
+
+                <!-- Icon 1 -->
+                <LinearLayout
+                    android:id="@+id/toGift"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="left"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/logo" />
+                    <TextView
+                        android:text="Đổi quà"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <!-- Thêm icon khác tương tự ở đây nếu cần -->
             </LinearLayout>
 
-            <!-- Thêm icon khác tương tự ở đây nếu cần -->
+            <!-- Tiêu đề -->
+            <TextView
+                android:id="@+id/tvDSMaterials"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bảng giá phế liệu"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"/>
+
+            <!-- RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerMaterials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"/>
         </LinearLayout>
 
-        <!-- Tiêu đề -->
-        <TextView
-            android:id="@+id/tvDSMaterials"
+        <!-- Loading Indicator -->
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bảng giá phế liệu"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:indicatorSize="48dp"
+            app:trackThickness="4dp" />
 
-        <!-- RecyclerView -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerMaterials"
+        <!-- Empty View -->
+        <LinearLayout
+            android:id="@+id/emptyView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"/>
-    </LinearLayout>
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/logo"
+                android:alpha="0.5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Không có dữ liệu vật liệu"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Vui lòng thử lại sau"
+                android:textSize="14sp"
+                android:textColor="#757575"
+                android:gravity="center" />
+        </LinearLayout>
+
+    </FrameLayout>
 </androidx.core.widget.NestedScrollView>

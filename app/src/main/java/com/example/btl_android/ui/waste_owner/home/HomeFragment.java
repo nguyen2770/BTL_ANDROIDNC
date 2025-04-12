@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,7 +23,10 @@ import com.example.btl_android.databinding.FragmentHomeBinding;
 import com.example.btl_android.ui.common.MaterialAdapter;
 import com.example.btl_android.ui.common.SlideAdapter;
 import com.example.btl_android.ui.waste_owner.statistics.StatisticsViewModel;
+import com.example.btl_android.utils.DataSeeder;
 import com.example.btl_android.viewmodel.MaterialViewModel;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -87,6 +91,8 @@ public class HomeFragment extends Fragment {
         RecyclerView recyclerView = binding.recyclerMaterials;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
 
+        viewModel = new ViewModelProvider(this).get(MaterialViewModel.class);
+
         adapter = new MaterialAdapter(getContext(), material -> {
             // Khi click vào item, mở chi tiết
             Bundle bundle = new Bundle();
@@ -100,6 +106,42 @@ public class HomeFragment extends Fragment {
         });
 
         recyclerView.setAdapter(adapter);
+
+        // Hiển thị loading
+        CircularProgressIndicator progressIndicator = binding.progressIndicator;
+        progressIndicator.setVisibility(View.VISIBLE);
+
+        // Kiểm tra dữ liệu vật liệu
+        FirebaseFirestore.getInstance().collection("materials").get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    if (queryDocumentSnapshots.isEmpty()) {
+                        // Nếu không có dữ liệu, tạo dữ liệu mẫu
+                        DataSeeder.seedMaterialData(success -> {
+                            if (success) {
+                                Toast.makeText(getContext(), "Đã tạo dữ liệu mẫu cho vật liệu", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getContext(), "Không thể tạo dữ liệu mẫu", Toast.LENGTH_SHORT).show();
+                            }
+                            progressIndicator.setVisibility(View.GONE);
+                        });
+                    } else {
+                        progressIndicator.setVisibility(View.GONE);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    progressIndicator.setVisibility(View.GONE);
+                    Toast.makeText(getContext(), "Lỗi khi kiểm tra dữ liệu: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+
+        viewModel.getMaterials().observe(getViewLifecycleOwner(), materials -> {
+            progressIndicator.setVisibility(View.GONE);
+            if (materials != null && !materials.isEmpty()) {
+                adapter.setMaterialList(materials);
+            } else {
+                // Hiển thị thông báo hoặc UI khi không có dữ liệu
+                binding.emptyView.setVisibility(View.VISIBLE);
+            }
+        });
 
         toGift = binding.toGift;
         toGift.setOnClickListener(new View.OnClickListener() {
