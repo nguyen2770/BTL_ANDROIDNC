@@ -32,6 +32,11 @@
         android:label="@string/menu_gift"
         tools:layout="@layout/fragment_gift" />
     <fragment
+        android:id="@+id/nav_guide"
+        android:name="com.example.btl_android.ui.guide.GuideFragment"
+        android:label="Hướng dẫn phân loại rác"
+        tools:layout="@layout/fragment_guide" />
+    <fragment
         android:id="@+id/nav_notification"
         android:name="com.example.btl_android.ui.waste_owner.notification.NotificationFragment"
         android:label="@string/menu_notification"

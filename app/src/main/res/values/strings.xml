@@ -20,9 +20,10 @@
     <string name="account"> Tôi </string>
     <string name="detail_material"> Chi tiết </string>
 
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    
+    <!-- Authentication strings -->
     <string name="title_activity_register">RegisterActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -32,4 +33,13 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    
+    <!-- Waste classification guide -->
+    <string name="rubbish_guide">Hướng dẫn phân loại rác</string>
+    <string name="rac_voco">🪨 Rác vô cơ</string>
+    <string name="Rac_vo_co_text">Rác vô cơ bao gồm những vật liệu không phân hủy tự nhiên như túi ni-lông, chai nhựa, lon, thủy tinh và kim loại. Hãy cẩn thận khi xử lý rác mảnh vỡ để tránh tai nạn.</string>
+    <string name="rac_huuco">🌿 Rác hữu cơ</string>
+    <string name="Rac_huu_co_text">Rác hữu cơ gồm thực phẩm thừa, vỏ trái cây, lá cây, và các chất dễ phân hủy khác. Việc tách riêng và xử lý rác hữu cơ giúp tạo ra phân hữu cơ cho cây trồng.</string>
+    <string name="rac_taiche">🔁 Rác tái chế</string>
+    <string name="Rac_tai_che_text">Rác tái chế bao gồm giấy, nhựa, kim loại và thủy tinh có thể được tái chế thành sản phẩm mới. Hãy làm sạch rác và phân loại đúng loại trước khi đưa vào thùng rác tái chế.</string>
 </resources>
