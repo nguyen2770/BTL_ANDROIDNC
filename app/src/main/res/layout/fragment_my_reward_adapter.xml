@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.common.MyRewardAdapter">
+    tools:context=".ui.waste_owner.gift.MyRewardAdapter">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

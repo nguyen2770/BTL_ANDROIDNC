@@ -1,16 +1,21 @@
 package com.example.btl_android.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.btl_android.R;
+import com.example.btl_android.ui.auth.LoginActivity;
 import com.example.btl_android.viewmodel.UserViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -39,20 +44,58 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         BottomNavigationView bottomNavigationView = binding.appBarMain.bottomNavigation;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_history, R.id.nav_setting, R.id.nav_notification)
-                .setOpenableLayout(drawer)
-                .build();
+
+        // Nhận role từ LoginActivity
+        String role = getIntent().getStringExtra("role");
+
+        if ("collector".equals(role)) {
+            // Nếu là người thu gom, đổi menu navigation
+            navigationView.getMenu().clear();
+            navigationView.inflateMenu(R.menu.nav_collector_drawer);
+
+            bottomNavigationView.getMenu().clear();
+            bottomNavigationView.inflateMenu(R.menu.bottom_nav_collector);
+
+            // Cập nhật AppBarConfiguration tương ứng
+            mAppBarConfiguration = new AppBarConfiguration.Builder(
+                    R.id.nav_home, R.id.nav_setting, R.id.nav_notification)
+                    .setOpenableLayout(drawer)
+                    .build();
+        } else {
+            // Nếu là donor thì giữ nguyên
+            mAppBarConfiguration = new AppBarConfiguration.Builder(
+                    R.id.nav_home, R.id.nav_history, R.id.nav_setting, R.id.nav_notification, R.id.Schedule)
+                    .setOpenableLayout(drawer)
+                    .build();
+        }
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
-        setupHeader();
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
 
+                if (id == R.id.logout) {
+                    // Xử lý đăng xuất riêng
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    finish();
+                    return true;
+                } else {
+                    // Mặc định điều hướng qua navGraph
+                    boolean handled = NavigationUI.onNavDestinationSelected(item, navController);
+                    drawer.closeDrawer(GravityCompat.START);
+                    return handled;
+                }
+            }
+        });
+
+        setupHeader();
     }
+
 
     private void setupHeader() {
         UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
@@ -68,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
             if (user != null) {
                 txtName.setText(user.getName());
                 Log.i( "setupHeader: ", user.getName());
-                Log.i( "setupHeader: ", user.getAddress());
                 Log.i( "setupHeader: ", user.getRole());
 
                 txtEmail.setText(user.getEmail());

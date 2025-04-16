@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.btl_android.data.model.User;
 import com.example.btl_android.data.repository.AuthRepository;
+import com.example.btl_android.data.repository.UserRepository;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +34,25 @@ public class AuthViewModel extends ViewModel {
     public LiveData<Boolean> getResetSuccess() {
         return repository.resetSuccessLiveData;
     }
+
+    public LiveData<String> getError() {
+        return repository.errorLiveData;
+    }
+
+
+    private final MutableLiveData<User> userDataLiveData = new MutableLiveData<>();
+    private final UserRepository userRepository = new UserRepository();
+
+    public LiveData<User> getUserData() {
+        return userDataLiveData;
+    }
+
+    public void fetchUserData(String uid) {
+        userRepository.getUserData(uid,
+                user -> userDataLiveData.postValue(user),
+                e -> Log.e("AuthViewModel", "Lỗi khi lấy user từ Firestore: " + e.getMessage()));
+    }
+
 
     public void sendOtp(String phone, Activity activity) {
         repository.sendOtp(phone, activity);
@@ -71,5 +91,10 @@ public class AuthViewModel extends ViewModel {
     public void saveUserToFirestore(User user) {
         repository.saveUserToFirestore(user);
     }
+
+    public void logout() {
+        repository.logout();
+    }
+
 
 }

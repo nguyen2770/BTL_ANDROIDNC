@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/orderDetailScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="16dp"
+        android:padding="16dp"
+        android:layout_marginTop="56dp"
+        android:backgroundTint="@android:color/white">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <!-- Thời gian yêu cầu thu gom -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="top"
+                android:layout_marginBottom="12dp">
+
+                <!-- Icon + Tiêu đề -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="top">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/baseline_calendar_month_24"
+                        android:tint="@color/green"
+                        android:layout_marginEnd="8dp"
+                        android:contentDescription="Calendar" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Thời gian yêu cầu"
+                            style="@style/TextAppearance.Material3.BodyMedium"
+                            android:textColor="@color/black" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="thu gom"
+                            style="@style/TextAppearance.Material3.BodySmall"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Dữ liệu -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="end">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ngày trong tuần"
+                        style="@style/TextAppearance.Material3.BodyMedium" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvPickupTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="15/04/2025 - 13:47"
+                        style="@style/TextAppearance.Material3.BodySmall" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Trạng thái đơn hàng -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="top"
+                android:layout_marginBottom="16dp">
+
+                <!-- Icon + Tiêu đề -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/baseline_info_24"
+                        android:tint="@color/green"
+                        android:layout_marginEnd="8dp"
+                        android:contentDescription="Status" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trạng thái đơn hàng"
+                        style="@style/TextAppearance.Material3.BodyMedium"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <!-- Dữ liệu -->
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvOrderStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chờ xử lý"
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:textColor="@color/green"
+                    android:textStyle="bold"
+                    android:layout_gravity="top" />
+            </LinearLayout>
+
+            <!-- Divider -->
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="16dp"
+                app:dividerColor="#DDDDDD" />
+
+            <!-- Địa điểm thu gom -->
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Địa điểm thu gom"
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Tên địa điểm -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvLocationName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cơ quan 123"
+                android:textStyle="bold"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_marginBottom="4dp" />
+
+            <!-- Địa chỉ -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6/13a Đ. Trường Chinh, Phường 14, Tân Bình, Hồ Chí Minh, Việt Nam"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Google Map -->
+            <FrameLayout
+                android:id="@+id/mapViewContainer"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.core.widget.NestedScrollView>

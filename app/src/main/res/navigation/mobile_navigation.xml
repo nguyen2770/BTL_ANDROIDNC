@@ -22,13 +22,20 @@
 
     <fragment
         android:id="@+id/nav_history"
-        android:name="com.example.btl_android.ui.waste_owner.gallery.GalleryFragment"
+        android:name="com.example.btl_android.ui.waste_owner.order.OrderHistoryFragment"
         android:label="@string/menu_history"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_order_history" >
+
+        <action
+            android:id="@+id/fragment_container"
+            app:destination="@id/detailSchedule" />
+
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gift"
-        android:name="com.example.btl_android.ui.waste_owner.GiftFragment"
+        android:name="com.example.btl_android.ui.waste_owner.gift.GiftFragment"
         android:label="@string/menu_gift"
         tools:layout="@layout/fragment_gift" />
     <fragment
@@ -43,12 +50,33 @@
         tools:layout="@layout/fragment_test" />
     <fragment
         android:id="@+id/nav_setting"
-        android:name="com.example.btl_android.ui.waste_owner.Test.TestFragment"
+        android:name="com.example.btl_android.ui.profile.ProfileFragment"
         android:label="@string/menu_contact"
-        tools:layout="@layout/fragment_test" />
+        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/detail_material"
-        android:name="com.example.btl_android.ui.waste_owner.MaterialDetailFragment"
+        android:name="com.example.btl_android.ui.waste_owner.Material.MaterialDetailFragment"
         android:label="@string/detail_material"
         tools:layout="@layout/fragment_material_detail" />
+    <fragment
+        android:id="@+id/Schedule"
+        android:name="com.example.btl_android.ui.waste_owner.Schedule.ScheduleFragment"
+        android:label="@string/Schedule"
+        tools:layout="@layout/fragment_schedule" >
+        <action
+            android:id="@+id/action_scheduleFragment_to_selectLocationFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.btl_android.ui.waste_owner.Schedule.SelectLocationFragment"
+        android:label="@string/Schedule"
+        tools:layout="@layout/fragment_select_location" />
+
+    <fragment
+        android:id="@+id/detailSchedule"
+        android:name="com.example.btl_android.ui.waste_owner.order.OrderDetailFragment"
+        android:label="@string/ScheduleDetail"
+        tools:layout="@layout/fragment_order_detail" />
 </navigation>

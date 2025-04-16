@@ -19,7 +19,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.btl_android.R;
 import com.example.btl_android.databinding.FragmentHomeBinding;
-import com.example.btl_android.ui.common.MaterialAdapter;
+import com.example.btl_android.ui.waste_owner.Material.MaterialAdapter;
 import com.example.btl_android.ui.common.SlideAdapter;
 import com.example.btl_android.viewmodel.MaterialViewModel;
 import com.google.gson.Gson;
@@ -54,8 +54,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

@@ -18,7 +18,8 @@
     <string name="schedulePickup">Đặt Lịch</string>
     <string name="account"> Tôi </string>
     <string name="detail_material"> Chi tiết </string>
-
+    <string name="Schedule"> Đặt lịch thu gom </string>
+    <string name="ScheduleDetail"> Đặt lịch thu gom </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

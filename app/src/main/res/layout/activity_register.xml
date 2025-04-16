@@ -66,22 +66,27 @@
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Địa chỉ -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:boxStrokeColor="#388E3C"
-                app:boxBackgroundMode="outline">
+<!--            &lt;!&ndash; Địa chỉ &ndash;&gt;-->
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="12dp"-->
+<!--                app:boxStrokeColor="#388E3C"-->
+<!--                app:boxBackgroundMode="outline"-->
+<!--                app:endIconDrawable="@drawable/baseline_location_on_24"-->
+<!--                app:endIconMode="custom">-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Địa chỉ" />
-            </com.google.android.material.textfield.TextInputLayout>
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/edtAddress"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Chọn địa chỉ"-->
+<!--                android:inputType="none"-->
+<!--                android:focusable="false"-->
+<!--                android:clickable="true" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-            <!-- Mật khẩu -->
+    <!-- Mật khẩu -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -112,6 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Người thu gom"
+                    android:tag="collector"
                     android:checked="true" />
 
                 <RadioButton
@@ -119,6 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Người có rác"
+                    android:tag="user"
                     android:layout_marginStart="20dp" />
             </RadioGroup>
 

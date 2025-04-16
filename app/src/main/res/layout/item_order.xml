@@ -1,0 +1,67 @@
+<!-- res/layout/item_order.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_order_item"
+        android:orientation="vertical"
+        android:elevation="2dp"
+        android:padding="12dp">
+
+        <!-- Dòng trên: Ngày giờ và nút xoá -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="12/04/2025 - 00:24"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_red_circle"
+                android:src="@android:drawable/ic_menu_delete"
+                android:contentDescription="Xoá"
+                android:scaleType="centerInside"
+                app:tint="#FFF" />
+        </LinearLayout>
+
+
+        <!-- Dòng giữa: Tiêu đề địa chỉ -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhà riêng"
+            android:textColor="#009688"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="4dp" />
+
+        <!-- Dòng cuối: Địa chỉ chi tiết -->
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="533 Lê Hồng Phong, Phường 10, Quận 10, Hồ Chí Minh, Việt Nam"
+            android:textColor="#4CAF50"
+            android:textSize="13sp"
+            android:layout_marginTop="2dp" />
+    </LinearLayout>
+</LinearLayout>
