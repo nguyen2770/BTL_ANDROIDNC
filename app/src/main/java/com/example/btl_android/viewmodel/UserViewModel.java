@@ -33,7 +33,7 @@ public class UserViewModel extends ViewModel {
         User currentUser = userLiveData.getValue();
         if (currentUser != null) {
             currentUser.setPoints(newPoints);
-            userLiveData.setValue(currentUser); // Trigger LiveData observer
+            userLiveData.setValue(currentUser); //
         }
     }
 

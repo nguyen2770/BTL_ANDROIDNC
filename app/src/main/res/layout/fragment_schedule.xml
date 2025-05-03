@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView   xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="false"
+    android:paddingBottom="100dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="50dp">
+
+        <!-- Tiêu đề -->
+        <TextView
+            android:text="Đặt lịch thu gom"
+            android:textSize="20sp"
+            android:textColor="#1B1B1B"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Vui lòng chọn địa chỉ và thời gian thu gom mong muốn"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- Địa chỉ đã lưu -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/baseline_location_on_24"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:tint="#00C853" />
+
+            <TextView
+                android:text="  Địa chỉ đã lưu"
+                android:textColor="#00C853"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddAddress"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#009688"
+                android:backgroundTint="@android:color/transparent"
+                android:strokeWidth="@integer/material_motion_duration_long_1"
+                android:strokeColor="#00C853"
+                android:text="Thêm"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp"
+                app:backgroundTint="@color/teal_700"
+                app:cornerRadius="16dp"
+                />
+        </LinearLayout>
+
+        <!-- Danh sách địa chỉ -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewAddresses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Thời gian thu gom -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/baseline_history_24"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:tint="#00C853" />
+
+            <TextView
+                android:text="  Thời gian thu gom"
+                android:textColor="#00C853"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Card thời gian -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:strokeColor="#E0E0E0"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Toggle ngày -->
+                <!-- Toggle ngày -->
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/toggleDayGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnWeekdays"
+                        android:text="Ngày trong tuần"
+                        android:backgroundTint="#00C853"
+                        android:textColor="@android:color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnWeekend"
+                        android:text="T7 - Chủ nhật"
+                        android:backgroundTint="#E0E0E0"
+                        android:textColor="#333"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <!-- Giờ thu gom -->
+                <TextView
+                    android:id="@+id/tvTimeRange"
+                    android:text="Giờ thu gom  08:00 - 17:00"
+                    android:layout_marginTop="12dp"
+                    android:textColor="#1A237E"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Nút xác nhận -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_gradient_green"
+            android:text="Xác nhận"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@color/teal_700"
+            app:cornerRadius="24dp" />
+    </LinearLayout>
+</ScrollView>

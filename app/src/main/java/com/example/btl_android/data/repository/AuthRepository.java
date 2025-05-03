@@ -19,6 +19,8 @@ public class AuthRepository {
     public MutableLiveData<String> verificationIdLiveData = new MutableLiveData<>();
     public MutableLiveData<FirebaseUser> userLiveData = new MutableLiveData<>();
     public MutableLiveData<Boolean> resetSuccessLiveData = new MutableLiveData<>();
+    public MutableLiveData<String> errorLiveData = new MutableLiveData<>();
+
 
     public AuthRepository() {
         firebaseAuth = FirebaseAuth.getInstance();
@@ -57,12 +59,20 @@ public class AuthRepository {
 
     public void registerWithEmail(String email, String password) {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnSuccessListener(authResult -> userLiveData.postValue(authResult.getUser()));
+                .addOnSuccessListener(authResult -> userLiveData.postValue(authResult.getUser()))
+                .addOnFailureListener(e -> {
+                    errorLiveData.postValue(e.getMessage()); // Gửi lỗi ra ngoài
+                    userLiveData.postValue(null);
+                });
     }
 
     public void loginWithEmail(String email, String password) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnSuccessListener(authResult -> userLiveData.postValue(authResult.getUser()));
+                .addOnSuccessListener(authResult -> userLiveData.postValue(authResult.getUser()))
+                .addOnFailureListener(e -> {
+                    errorLiveData.postValue(e.getMessage()); // Gửi lỗi ra ngoài
+                    userLiveData.postValue(null);
+                });
     }
 
     public void updatePassword(String newPassword) {
@@ -98,4 +108,9 @@ public class AuthRepository {
                     .addOnFailureListener(e -> Log.e("Firestore", "Error adding user profile: " + e.getMessage()));
         }
     }
+
+    public void logout() {
+        firebaseAuth.signOut();
+    }
+
 }

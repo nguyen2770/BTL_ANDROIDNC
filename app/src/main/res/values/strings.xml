@@ -19,10 +19,12 @@
     <string name="schedulePickup">Đặt Lịch</string>
     <string name="account"> Tôi </string>
     <string name="detail_material"> Chi tiết </string>
+    <string name="Schedule"> Đặt lịch thu gom </string>
+    <string name="ScheduleDetail"> Đặt lịch thu gom </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    
+
     <!-- Authentication strings -->
     <string name="title_activity_register">RegisterActivity</string>
     <string name="prompt_email">Email</string>
@@ -33,7 +35,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    
+
     <!-- Waste classification guide -->
     <string name="rubbish_guide">Hướng dẫn phân loại rác</string>
     <string name="rac_voco">🪨 Rác vô cơ</string>

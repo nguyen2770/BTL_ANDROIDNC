@@ -12,7 +12,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-
 import com.example.btl_android.R;
 import com.example.btl_android.ui.main.MainActivity;
 import com.example.btl_android.viewmodel.AuthViewModel;
@@ -63,35 +62,43 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-
-            if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
+            // Gọi hàm đăng nhập từ ViewModel
             authViewModel.loginWithEmail(email, password);
         });
 
         tvForgotPassword.setOnClickListener(v -> {
-            // Chuyển sang màn hình Quên mật khẩu (nếu có)
             startActivity(new Intent(this, ForgotPasswordActivity.class));
         });
 
-        authViewModel.getUser().observe(this, user -> {
-            if (user != null) {
-                Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-                // Chuyển đến màn hình chính
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
+        // Quan sát đối tượng FirebaseUser sau khi đăng nhập thành công
+        authViewModel.getUser().observe(this, firebaseUser -> {
+            if (firebaseUser != null) {
+                String uid = firebaseUser.getUid();
+                authViewModel.fetchUserData(uid); // Lấy dữ liệu User từ Firestore
             }
         });
 
-        tvToRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        // Quan sát dữ liệu User lấy từ Firestore
+        authViewModel.getUserData().observe(this, user -> {
+            if (user != null) {
+                Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("role", user.getRole());
                 startActivity(intent);
+                finish(); // Kết thúc LoginActivity
             }
+        });
+
+        // Quan sát thông báo lỗi từ ViewModel
+        authViewModel.getError().observe(this, error -> {
+            if (error != null && !error.isEmpty()) {
+                Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        tvToRegister.setOnClickListener(view -> {
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
     }
 }
