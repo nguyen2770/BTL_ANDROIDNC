@@ -2,14 +2,14 @@ package com.example.btl_android.data.model;
 
 // thông tin về vật liệu tái chế
 public class Material {
-    private int materialID;       // Mã định danh vật liệu
+    private String materialID;       // Mã định danh vật liệu
     private String name;          // Tên vật liệu (VD: Nhựa, Giấy...)
     private String description;   // Mô tả chi tiết về vật liệu
     private String category;      // Nhóm vật liệu (VD: Nhựa mềm, Kim loại nặng...)
     private double pricePerKg;    // Giá trị ước tính trên mỗi kg (dùng để tính điểm)
     private String imageUrl;      // link ảnh của vaatj liệu
 
-    public Material(int materialID, String name, String description, String category, double pricePerKg, String imageUrl) {
+    public Material(String materialID, String name, String description, String category, double pricePerKg, String imageUrl) {
         this.materialID = materialID;
         this.name = name;
         this.description = description;
@@ -20,11 +20,11 @@ public class Material {
 
     public Material() {}
 
-    public int getMaterialID() {
+    public String getMaterialID() {
         return materialID;
     }
 
-    public void setMaterialID(int materialID) {
+    public void setMaterialID(String materialID) {
         this.materialID = materialID;
     }
 

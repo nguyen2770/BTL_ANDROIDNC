@@ -79,4 +79,46 @@
         android:name="com.example.btl_android.ui.waste_owner.order.OrderDetailFragment"
         android:label="@string/ScheduleDetail"
         tools:layout="@layout/fragment_order_detail" />
+
+    <fragment
+        android:id="@+id/nav_collector_home"
+        android:name="com.example.btl_android.ui.collector.AvailableRequestsFragment"
+        android:label="Đơn chờ"
+        tools:layout="@layout/fragment_available_requests" />
+
+
+
+    <fragment
+        android:id="@+id/nav_collector_route"
+        android:name="com.example.btl_android.ui.collector.thugom.AcceptedRequestsFragment"
+        android:label="Lộ trình"
+        tools:layout="@layout/fragment_accepted_requests" >
+        <action android:id="@+id/action_accepted_to_collectDetail"
+            app:destination="@+id/collector_detail"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/collector_detail_request"
+        android:name="com.example.btl_android.ui.collector.RequestDetailFragment"
+        android:label="Chi tiết"
+        tools:layout="@layout/fragment_request_detail" />
+
+    <fragment
+        android:id="@+id/action_accepted_to_map"
+        android:name="com.example.btl_android.ui.collector.RouteFragment"
+        android:label="Lộ trình"
+        tools:layout="@layout/fragment_route" />
+
+    <fragment
+        android:id="@+id/conllector_dashboard"
+        android:name="com.example.btl_android.ui.collector.DashboardFragment"
+        android:label="Thống kê"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/collector_detail"
+        android:name="com.example.btl_android.ui.collector.thugom.CollectDetailFragment"
+        android:label="Thu gom rác tái chế"
+        tools:layout="@layout/fragment_collect_detail" />
 </navigation>

@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:layout_marginTop="56dp">
+
+    <Button
+        android:id="@+id/btnStartCollecting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bắt đầu thu gom"
+        android:layout_marginBottom="12dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerAcceptedRequests"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
