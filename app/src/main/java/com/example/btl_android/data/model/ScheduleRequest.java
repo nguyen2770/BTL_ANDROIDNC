@@ -25,19 +25,7 @@ public class ScheduleRequest implements Serializable {
 
     public ScheduleRequest() {}
 
-    public ScheduleRequest(String id, String userId, String collectorId, String address, double latitude, double longitude, String timeRange, String status, List<RecyclableMaterial> materials, double totalWeight, String createdAt) {
-        this.id = id;
-        this.userId = userId;
-        this.collectorId = collectorId;
-        this.address = address;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.timeRange = timeRange;
-        this.status = status;
-        this.materials = materials;
-        this.totalWeight = totalWeight;
-        this.createdAt = createdAt;
-    }
+
 
 
     @SuppressLint("NewApi")

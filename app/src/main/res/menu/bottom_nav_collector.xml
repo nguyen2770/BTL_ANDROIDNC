@@ -1,5 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/nav_collector_home" android:title="Trang chính" android:icon="@drawable/baseline_home_24"/>
-    <item android:id="@+id/nav_collector_schedule" android:title="Lịch" android:icon="@drawable/baseline_calendar_month_24"/>
-    <item android:id="@+id/nav_collector_setting" android:title="Cài đặt" android:icon="@drawable/baseline_settings_24"/>
+    <item android:id="@+id/conllector_dashboard" android:title="Thống kê" android:icon="@drawable/baseline_bar_chart_24"/>
+    <item android:id="@+id/nav_collector_home" android:title="Đơn chờ" android:icon="@drawable/baseline_assignment_add_24"/>
+    <item android:id="@+id/nav_collector_route" android:title="Thu gom" android:icon="@drawable/baseline_navigation_24"/>
+    <item android:id="@+id/nav_setting" android:title="Cài đặt" android:icon="@drawable/avatar_circle_ripple"/>
 </menu>

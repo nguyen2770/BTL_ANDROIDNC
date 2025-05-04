@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Nhận role từ LoginActivity
         String role = getIntent().getStringExtra("role");
+//        String role = "collector";
 
         if ("collector".equals(role)) {
             // Nếu là người thu gom, đổi menu navigation
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Cập nhật AppBarConfiguration tương ứng
             mAppBarConfiguration = new AppBarConfiguration.Builder(
-                    R.id.nav_home, R.id.nav_setting, R.id.nav_notification)
+                    R.id.nav_collector_home, R.id.nav_setting, R.id.conllector_dashboard, R.id.nav_collector_route)
                     .setOpenableLayout(drawer)
                     .build();
         } else {
@@ -73,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+        if ("collector".equals(role)) {
+            navController.navigate(R.id.nav_collector_home);
+        }
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

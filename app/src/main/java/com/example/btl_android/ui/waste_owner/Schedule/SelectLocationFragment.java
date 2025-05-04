@@ -128,6 +128,7 @@ public class SelectLocationFragment extends Fragment implements OnMapReadyCallba
                 viewModel.saveAddress(address, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(getContext(), "Đã lưu địa chỉ", Toast.LENGTH_SHORT).show();
+                        requireActivity().getSupportFragmentManager().popBackStack();
                     } else {
                         Toast.makeText(getContext(), "Lưu thất bại", Toast.LENGTH_SHORT).show();
                     }
@@ -186,7 +187,7 @@ public class SelectLocationFragment extends Fragment implements OnMapReadyCallba
                     requireActivity().runOnUiThread(() -> {
                         // Hiển thị địa chỉ chi tiết
                         tvSelectedAddress.setText(detailedAddress);
-                        Toast.makeText(getContext(), "Địa chỉ: " + detailedAddress, Toast.LENGTH_SHORT).show();
+
                     });
                 } else {
                     requireActivity().runOnUiThread(() -> {
