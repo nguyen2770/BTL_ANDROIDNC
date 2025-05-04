@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Layout cuộn được toàn bộ nội dung -->
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -29,22 +28,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center"
+            android:gravity="left"
             android:layout_marginTop="8dp">
 
             <!-- Icon 1 -->
             <LinearLayout
                 android:id="@+id/toGift"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="left"
-                android:layout_margin="10dp"
-                android:layout_height="wrap_content">
+                android:layout_margin="10dp">
+
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/logo" />
+                    android:src="@drawable/giftbox" />
                 <TextView
                     android:text="Đổi quà"
                     android:textSize="14sp"
@@ -52,7 +51,25 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
 
-            <!-- Thêm icon khác tương tự ở đây nếu cần -->
+            <!-- Icon 2 -->
+            <LinearLayout
+                android:id="@+id/toFanpage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/facebook" />
+                <TextView
+                    android:text="Fanpage"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
 
         <!-- Tiêu đề -->
