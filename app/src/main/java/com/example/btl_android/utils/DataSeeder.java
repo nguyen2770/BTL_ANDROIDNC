@@ -8,6 +8,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -129,7 +130,7 @@ public class DataSeeder {
                     
                     // Nhựa
                     materials.add(new Material(
-                            1,
+                            null,
                             "Chai nhựa PET",
                             "Chai nhựa trong suốt dùng đựng nước, nước ngọt, dầu ăn...",
                             "Nhựa",
@@ -138,7 +139,7 @@ public class DataSeeder {
                     ));
                     
                     materials.add(new Material(
-                            2,
+                            null,
                             "Nhựa HDPE",
                             "Nhựa đục, cứng, thường dùng làm chai sữa, chai dầu gội, nước rửa chén...",
                             "Nhựa",
@@ -148,7 +149,7 @@ public class DataSeeder {
                     
                     // Giấy
                     materials.add(new Material(
-                            3,
+                            null,
                             "Giấy báo, tạp chí",
                             "Giấy báo, tạp chí cũ, sách vở không dùng...",
                             "Giấy",
@@ -157,7 +158,7 @@ public class DataSeeder {
                     ));
                     
                     materials.add(new Material(
-                            4,
+                            null,
                             "Thùng carton",
                             "Thùng carton đựng hàng hóa, sản phẩm...",
                             "Giấy",
@@ -167,7 +168,7 @@ public class DataSeeder {
                     
                     // Kim loại
                     materials.add(new Material(
-                            5,
+                            null,
                             "Lon nhôm",
                             "Lon bia, nước ngọt, đồ uống có ga...",
                             "Kim loại",
@@ -176,7 +177,7 @@ public class DataSeeder {
                     ));
                     
                     materials.add(new Material(
-                            6,
+                            null,
                             "Sắt vụn",
                             "Các loại sắt vụn, thép không gỉ, kim loại tái chế...",
                             "Kim loại",
@@ -186,7 +187,7 @@ public class DataSeeder {
                     
                     // Thủy tinh
                     materials.add(new Material(
-                            7,
+                            null,
                             "Chai thủy tinh",
                             "Chai rượu, nước ngọt, lọ thủy tinh đựng gia vị...",
                             "Thủy tinh",
@@ -196,7 +197,7 @@ public class DataSeeder {
                     
                     // Rác điện tử
                     materials.add(new Material(
-                            8,
+                            null,
                             "Pin, ắc quy",
                             "Pin các loại đã qua sử dụng...",
                             "Rác điện tử",
@@ -205,7 +206,7 @@ public class DataSeeder {
                     ));
                     
                     materials.add(new Material(
-                            9,
+                            null,
                             "Linh kiện điện tử",
                             "Bo mạch, dây điện, linh kiện từ thiết bị điện tử...",
                             "Rác điện tử",
@@ -216,9 +217,11 @@ public class DataSeeder {
                     // Thêm các vật liệu vào Firestore
                     List<Task<Void>> tasks = new ArrayList<>();
                     for (Material material : materials) {
-                        tasks.add(db.collection("materials").document().set(material));
+                        DocumentReference docRef = db.collection("materials").document(); // tạo docRef
+                        material.setMaterialID(docRef.getId()); // gán ID tự sinh vào model
+                        tasks.add(docRef.set(material)); // lưu vào Firestore
                     }
-                    
+
                     // Đợi tất cả các tác vụ hoàn thành
                     Tasks.whenAllComplete(tasks)
                             .addOnSuccessListener(taskSnapshots -> {
